@@ -1,0 +1,27 @@
+{
+	"status": "ok",
+	"id": 94,
+	"version": 2.3,
+	"data": [
+		{
+			"img": "http://quran.ksu.edu.sa/png_big/1.png",
+			"url": "http://quran.ksu.edu.sa/png_big/1.png"
+		},
+		{
+			"img": "http://quran.ksu.edu.sa/png_big/2.png",
+			"url": "http://quran.ksu.edu.sa/png_big/2.png"
+		},
+		{
+			"img": "http://quran.ksu.edu.sa/png_big/3.png",
+			"url": "http://quran.ksu.edu.sa/png_big/3.png"
+		},
+		{
+			"img": "http://quran.ksu.edu.sa/png_big/4.png",
+			"url": "http://quran.ksu.edu.sa/png_big/4.png"
+		},
+		{
+			"img": "http://quran.ksu.edu.sa/png_big/5.png",
+			"url": "http://quran.ksu.edu.sa/png_big/5.png"
+		}
+	]
+}

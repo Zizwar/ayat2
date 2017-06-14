@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="7" id="com.ksu.ayat2" ios-CFBundleVersion="1.1.0" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>
+	آيات 
+	</name>
+    <description>
+       آيات
+    </description>
+    <author email="contact@ksu.edu.sa.com" href="https://ksu.edu.sa">
+        Ibrahim BIDI
+    </author>
+    <access origin="*" />
+    <plugin name="cordova-plugin-screen-orientation" />
+    <plugin name="cordova-plugin-file" />
+    <plugin name="cordova-plugin-file-transfer" />
+    <plugin name="cordova-plugin-vibration" />
+    <plugin name="cordova-plugin-x-socialsharing" />
+	 <plugin name="cordova-plugin-clipboard-x" spec="~1.0.1" />
+    <plugin name="cordova-plugin-x-toast" />
+    <plugin name="https://github.com/Sharinglabs/cordova-plugin-datepicker" />
+    <plugin name="cordova-plugin-dialogs" />
+    <plugin name="https://github.com/katzer/cordova-plugin-local-notifications.git" />
+    <plugin name="cordova-plugin-network-information" />
+    <preference name="Theme" value="com.eclipsesource.tabris.android.R.style.Theme_Tabris_Light_DarkActionBar" />
+    <preference name="EnableDeveloperConsole" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <platform name="android">
+        <icon density="ldpi" src="res/android/mipmap-ldpi/ic_launcher.png" />
+        <icon density="mdpi" src="res/android/mipmap-mdpi/ic_launcher.png" />
+        <icon density="hdpi" src="res/android/mipmap-hdpi/ic_launcher.png" />
+        <icon density="xhdpi" src="res/android/mipmap-xhdpi/ic_launcher.png" />
+        <icon density="xxhdpi" src="res/android/mipmap-xxhdpi/ic_launcher.png" />
+        <icon density="xxxhdpi" src="res/android/mipmap-xxxhdpi/ic_launcher.png" />
+    </platform>
+    <platform name="ios">
+        <icon height="180" src="res/ios/icons/icon-60@3x.png" width="180" />
+        <icon height="120" src="res/ios/icons/icon-60@2x.png" width="120" />
+        <icon height="76" src="res/ios/icons/icon-76.png" width="76" />
+        <icon height="152" src="res/ios/icons/icon-76@2x.png" width="152" />
+        <icon height="40" src="res/ios/icons/icon-40.png" width="40" />
+        <icon height="80" src="res/ios/icons/icon-40@2x.png" width="80" />
+        <icon height="57" src="res/ios/icons/icon.png" width="57" />
+        <icon height="114" src="res/ios/icons/icon@2x.png" width="114" />
+        <icon height="72" src="res/ios/icons/icon-72.png" width="72" />
+        <icon height="144" src="res/ios/icons/icon-72@2x.png" width="144" />
+        <icon height="29" src="res/ios/icons/icon-small.png" width="29" />
+        <icon height="58" src="res/ios/icons/icon-small@2x.png" width="58" />
+        <icon height="87" src="res/ios/icons/icon-small@3x.png" width="87" />
+        <icon height="50" src="res/ios/icons/icon-small-50.png" width="50" />
+        <icon height="100" src="res/ios/icons/icon-small-50@2x.png" width="100" />
+    </platform>
+   
+</widget>
