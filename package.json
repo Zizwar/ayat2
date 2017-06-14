@@ -2,7 +2,7 @@
   "title": "Ayat Native",
   "description": "Ayat 2.0",
   "category": "Android App",
-  "main": "index.js",
+  "main": "./ndex.js",
   "dependencies": {
     "tabris": "^1.10.0"
   }
