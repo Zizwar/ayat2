@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="edu.ksu.ayat2" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="edu.ksu.ayat2" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Ayat 2</name>
     <description>Ayat 2
     </description>
     <author email="dev@edu.ksu.sa" href="http://edu.ksu.sa">
         EDU KSU
     </author>
-    <content src="index.html" />
+    <content src="main.js" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     	<plugin name="cordova-plugin-media" />
 	<plugin name="cordova-plugin-file"/>
@@ -20,7 +20,12 @@
     <plugin name="cordova-plugin-x-toast" />
     <plugin name="cordova-plugin-dialogs" />
        <plugin name="cordova-sqlite-ext" />   
-    <access origin="*" />
+	
+	 <plugin name="cordova-plugin-dbcopy" /> 
+	 <plugin name="cordova-plugin-local-notifications" /> 
+	 <plugin name="cordova-plugin-datepicker" /> 
+	 <plugin name="cordova-plugin-actionsheet" /> 
+	<access origin="*" />
     <allow-intent href="http:///" />
     <allow-intent href="https:///" />
     <allow-intent href="tel:*" />
