@@ -156,7 +156,7 @@ module.exports = function (loading_) {
     //
     var itemListTafssir = [
         { id: "sa3dy", name: _lang['tafsir_sa3dy'] },
-        { id: "waseet", name: _lang['tafsir_waseet'] },
+      //  { id: "waseet", name: _lang['tafsir_waseet'] },
         { id: "baghawy", name: _lang['tafsir_ba3awy'] },
         { id: "katheer", name: _lang['tafsir_katheer'] },
         { id: "qortoby", name: _lang['tafsir_kortoby'] },
@@ -199,7 +199,7 @@ module.exports = function (loading_) {
         family: "serif", //"serif", "sans-serif", "condensed" and "monospace"
         colorText: ["#000", "#ccc"],
         bg: ["#fff", "#000"],
-        bgclr: "#82b074",
+        bgclr: "#34d058",
         //colorTitle: rgba(0, 141, 195, 1),
         //compositeTitle: [rgba(255, 255, 255, 0.85), rgba(6, 6, 6, 0.85)],
         activeNormal: !localStorage.getItem("activeNormal") ? true : false
@@ -379,7 +379,7 @@ module.exports = function (loading_) {
                // openPageOptions()
             }
         },
-        */
+        
         {
             type: "switch",
             text: _lang["setting_showstatus"],
@@ -403,7 +403,7 @@ module.exports = function (loading_) {
                 }, 50)
                 //openPageMedia()
             }
-        }
+        }*/
     ]
     //creat link drwaer
     function creatLinkDraw(labelsDraw, el) {
@@ -701,8 +701,7 @@ module.exports = function (loading_) {
             //bottom: 0,
             //right: 0,
             //  centerX: 0, centerY: 0,
-           // image: "./images/" + wino.currMosshaf + "/" + i + ".png",
-			image: "http://quran.ksu.edu.sa/png_big/" + i + ".png",
+            image: "./images/" + wino.currMosshaf + "/" + i + ".png",
             //http://quran.ksu.edu.sa/png_big/
             scaleMode: "fill",
         }).appendTo(scrollView);
@@ -1092,7 +1091,7 @@ module.exports = function (loading_) {
         //     currAya = wino_.sura + "_" + wino_.aya; //this.currAya || def_aya;
         //   //logz("currAya", currAya)
         //
-        getTafsir({ auther: "waseet", aya: wino_.aya, sura: wino_.sura }, callback_)
+        getTafsir({ auther: "katheer", aya: wino_.aya, sura: wino_.sura }, callback_)
         /////// openTafssir({ aya: wino_.aya, sura: wino_.sura });
         ////logz(reqTafssir.rows[(tafsi[0][ids] - 1)]);
     }
@@ -1167,7 +1166,7 @@ module.exports = function (loading_) {
                     });
                     var topz = widget__.get("bounds").top
                     ////logz("top contr=" + topz);
-                    scroll.set("scrollY", topz);
+                    slide.set("scrollY", topz);
                     // wino.classTfs = wino_.classTab;
                 } else {
                     //lastLog("reload")
@@ -1454,7 +1453,7 @@ module.exports = function (loading_) {
             });
             var topz = widget_.get("bounds").top
             ////logz("top contr=" + topz);
-            scroll.set("scrollY", topz);
+            slide.set("scrollY", topz);
             wino.oldTfs = widget_.get("class");
             ////errz("wino.OldTfs = " + wino.oldTfs)
             ////errz("wino.classTfs = " + wino.classTfs)
@@ -1794,36 +1793,32 @@ module.exports = function (loading_) {
     //end page tafssir
     var tafssir_ = tabDown(_lang["trans"], './images/icons/tafssir.png', './images/icons/tafssir.png')
     //play tab scrolling tafssir
-    var scroll = new tabris.ScrollView({
+    var slide = new tabris.ScrollView({
         right: 0,
-        //top: 0,
-        //bottom: 0,
-        left: 0,
-        height:300,
-        direction: "vertical",
-        //background: "#369"
-    })//.appendTo(tafssir_)
-    var slidez = new tabris.Composite({
-        //background: "#347",
-        top:0,
+        top: 0,
         bottom: 0,
         left: 0,
-        right: 0
+       // height:300,
+        direction: "vertical",
+        //background: "#369"
     }).appendTo(tafssir_)
+
     //scroling
     var actif = false;
     var bgclr = ["#ccc", "#f5f7f8"]; //color tafssir
     function scrolling(items) {
         //  console.log("scrolling")
         //
-        slidez.dispose();
-        slidez = new tabris.Composite({
-            background: "#2887da",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            top: 0
-        }).appendTo(scroll)
+        slide.dispose();
+        slide = new tabris.ScrollView({
+          right: 0,
+        top: 0,
+        bottom: 0,
+        left: 0,
+       // height:300,
+        direction: "vertical",
+        //background: "#369"
+        }).appendTo(tafssir_)
         //
         items.forEach(function (item, index) {
             //  console.error(item.aya)
@@ -1847,14 +1842,7 @@ module.exports = function (loading_) {
                 //onTapAyat(widget);
                  onLongpressTafssir(widget, event);
                 
-            }).on("longpress", function (widget, event) {
-                if (event.state === "start") {
-                    //  pageAyat.find("."+widget.get())
-                    wino.autostart = true;
-                    setTimeout(function () { wino.autostart = false }, 1000);
-                    onLongpressTafssir(widget, event);
-                }
-            }).appendTo(slidez);
+            }).appendTo(slide);
             //
             new tabris.TextView({
                 //class: '',
@@ -1869,14 +1857,9 @@ module.exports = function (loading_) {
                 },
                 text: item.aya + ") " + item.content
             }).on("tap", function (w, e) {
-                var WContainer = pageAyat.find("." + w.get("scrolling"))[0];
-                onTapAyat(WContainer.get("wino"));
-            }).on("longpress", function (widget, event) {
-                vibrate_(50);
-                if (event.state === "start") {
-                    var WContainer = pageAyat.find("." + widget.get("scrolling"))[0];
+              var WContainer = pageAyat.find("." + w.get("scrolling"))[0];
                     onLongpressTafssir(WContainer, event);
-                }
+                    
             }).appendTo(container);
             //
 
@@ -1893,7 +1876,7 @@ module.exports = function (loading_) {
 
                     var topz = widget__.get("bounds").top
                     ////logz("top contr=" + topz);
-                    scroll.set("scrollY", topz);
+                    slide.set("scrollY", topz);
                     // wino.classTfs = wino_.classTab;
                     wino.tmp.tafssirTrans = false;
                 }
@@ -1916,7 +1899,7 @@ module.exports = function (loading_) {
         widget.set("background", "#d7edd8")
         var topz = widget.get("bounds").top
         ////logz("top contr=" + topz);
-        scroll.set("scrollY", topz);
+        slide.set("scrollY", topz);
         var wino_ = widget.get("wino");
         //
         wino.sura = wino_.sura;
@@ -2950,7 +2933,7 @@ module.exports = function (loading_) {
                 //
 
                 animateOutReq(btnIcoCompo);
-                getTafsir({ auther: "waseet", aya: wino_.aya, sura: wino_.sura }, callback_)
+                getTafsir({ auther: "katheer", aya: wino_.aya, sura: wino_.sura }, callback_)
                 // openTafssir(data)
             }
         },
@@ -3274,7 +3257,7 @@ module.exports = function (loading_) {
             var aya = sa[1];
             indicatorSearch.set("visible", true);
             var item = { aya: aya, sura: sura, page: page }
-            if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "waseet", aya: aya, sura: sura }, callback_)//openTafssir(item);
+            if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "katheer", aya: aya, sura: sura }, callback_)//openTafssir(item);
             setTimeout(function () {
                 indicatorSearch.set("visible", false);
                 if (obj == "bu_browse") closeAllPage();
@@ -3351,7 +3334,7 @@ module.exports = function (loading_) {
             var aya = QuranData.HizbQaurter[jh][1];
             var page = suraSafha(sura, aya);
             var item = { aya: aya, sura: sura, page: page }
-            if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "waseet", aya: aya, sura: sura }, callback_)//openTafssir(item);
+            if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "katheer", aya: aya, sura: sura }, callback_)//openTafssir(item);
 
             indicatorSearch.set("visible", true);
             //var item = {aya:aya,sura:sura,page:page}
@@ -3433,7 +3416,7 @@ module.exports = function (loading_) {
             //lastLog("select sura " + sura)
             //	playThisAya(item);
             setTimeout(function () {
-                if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "waseet", aya: aya, sura: sura }, callback_)// openTafssir(item);
+                if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "katheer", aya: aya, sura: sura }, callback_)// openTafssir(item);
                 indicatorSearch.set("visible", false);
                 if (obj == "bu_browse") closeAllPage();
             }, 500)
@@ -4776,7 +4759,7 @@ module.exports = function (loading_) {
         //   console.log("play settimout")
         //"http://192.168.43.64:8080/update.json?o"
         //  getJSON("").then(function(json) {
-        getJSON("http://quran.ksu.edu.sa/help/ayat2/update/?sys=ios&l=" + wino.lang).then(function (json) {
+        getJSON("http://quran.ksu.edu.sa/help/ayat2/update/?lang=" + wino.lang).then(function (json) {
             // wino.stor.update = []
             // setStorJ("update",wino.stor.update);
             // cbAmakenPage(json);
@@ -4846,7 +4829,7 @@ module.exports = function (loading_) {
             scaleMode: "fit",
             layoutData: { left: 100, right: 100, top: "prev() 20" }
         }).on("tap", function () {
-            linkWeb("http://quran.ksu.edu.sa/?sys=ios&about=ayat2&?l=" + wino.lang, _lang["help_about_mi"]).open();
+            linkWeb("http://quran.ksu.edu.sa/?about=ayat2&?l=" + wino.lang, _lang["help_about_mi"]).open();
         }).appendTo(scrollView);
         return;
 
