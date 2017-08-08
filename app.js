@@ -1093,7 +1093,7 @@ module.exports = function (loading_) {
         //     currAya = wino_.sura + "_" + wino_.aya; //this.currAya || def_aya;
         //   //logz("currAya", currAya)
         //
-		getTafsir({ auther: "e3rab", aya: wino_.aya, sura: wino_.sura }, callback_)
+
         getTafsir({ auther: "katheer", aya: wino_.aya, sura: wino_.sura }, callback_)
         /////// openTafssir({ aya: wino_.aya, sura: wino_.sura });
         ////logz(reqTafssir.rows[(tafsi[0][ids] - 1)]);
@@ -2937,7 +2937,6 @@ module.exports = function (loading_) {
                 //
 
                 animateOutReq(btnIcoCompo);
-				getTafsir({ auther: "e3rab", aya: wino_.aya, sura: wino_.sura }, callback_)
                 getTafsir({ auther: "katheer", aya: wino_.aya, sura: wino_.sura }, callback_)
                 // openTafssir(data)
             }
@@ -3262,7 +3261,6 @@ module.exports = function (loading_) {
             var aya = sa[1];
             indicatorSearch.set("visible", true);
             var item = { aya: aya, sura: sura, page: page }
-			getTafsir({ auther: "e3rab", aya: wino_.aya, sura: wino_.sura }, callback_)
             if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "katheer", aya: aya, sura: sura }, callback_)//openTafssir(item);
             setTimeout(function () {
                 indicatorSearch.set("visible", false);
@@ -3340,7 +3338,6 @@ module.exports = function (loading_) {
             var aya = QuranData.HizbQaurter[jh][1];
             var page = suraSafha(sura, aya);
             var item = { aya: aya, sura: sura, page: page }
-			getTafsir({ auther: "e3rab", aya: wino_.aya, sura: wino_.sura }, callback_)
             if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "katheer", aya: aya, sura: sura }, callback_)//openTafssir(item);
 
             indicatorSearch.set("visible", true);
@@ -4173,11 +4170,13 @@ module.exports = function (loading_) {
         return require("./tarajem/" + req + ".js").tafssir;
     }
     ///remove
-
-    ///emove
+ setTimeout(function () { 
+	 db = window.sqlitePlugin.openDatabase({ name: "e3rab.aytn", location: "default", createFromLocation: 1 });
+ },5000)
     function getTafsir(data, cb) {
         //  openTafssir();
         // return
+		 
         db = window.sqlitePlugin.openDatabase({ name: wino.stor.tafssir + ".aytn", location: "default", createFromLocation: 1 });
         var query;
         if (data.id)
