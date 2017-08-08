@@ -155,10 +155,11 @@ module.exports = function (loading_) {
     };
     //
     var itemListTafssir = [
-        { id: "sa3dy", name: _lang['tafsir_sa3dy'] },
-      //  { id: "waseet", name: _lang['tafsir_waseet'] },
+         { id: "katheer", name: _lang['tafsir_katheer'] },
+		{ id: "sa3dy", name: _lang['tafsir_sa3dy'] },
+        { id: "waseet", name: _lang['tafsir_waseet'] },
         { id: "baghawy", name: _lang['tafsir_ba3awy'] },
-        { id: "katheer", name: _lang['tafsir_katheer'] },
+       
         { id: "qortoby", name: _lang['tafsir_kortoby'] },
         { id: "tabary", name: _lang['tafsir_tabary'] },
         //{ id: "tanweer", name: _lang['tafsir_tanweer'] },
@@ -1092,6 +1093,7 @@ module.exports = function (loading_) {
         //     currAya = wino_.sura + "_" + wino_.aya; //this.currAya || def_aya;
         //   //logz("currAya", currAya)
         //
+		getTafsir({ auther: "e3rab", aya: wino_.aya, sura: wino_.sura }, callback_)
         getTafsir({ auther: "katheer", aya: wino_.aya, sura: wino_.sura }, callback_)
         /////// openTafssir({ aya: wino_.aya, sura: wino_.sura });
         ////logz(reqTafssir.rows[(tafsi[0][ids] - 1)]);
@@ -1856,6 +1858,7 @@ module.exports = function (loading_) {
                     left: 5,
                     right: 5
                 },
+						alignment: "right",
                 text: item.aya + ") " + item.content
             }).on("tap", function (w, e) {
               var WContainer = pageAyat.find("." + w.get("scrolling"))[0];
@@ -2934,6 +2937,7 @@ module.exports = function (loading_) {
                 //
 
                 animateOutReq(btnIcoCompo);
+				getTafsir({ auther: "e3rab", aya: wino_.aya, sura: wino_.sura }, callback_)
                 getTafsir({ auther: "katheer", aya: wino_.aya, sura: wino_.sura }, callback_)
                 // openTafssir(data)
             }
@@ -3258,6 +3262,7 @@ module.exports = function (loading_) {
             var aya = sa[1];
             indicatorSearch.set("visible", true);
             var item = { aya: aya, sura: sura, page: page }
+			getTafsir({ auther: "e3rab", aya: wino_.aya, sura: wino_.sura }, callback_)
             if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "katheer", aya: aya, sura: sura }, callback_)//openTafssir(item);
             setTimeout(function () {
                 indicatorSearch.set("visible", false);
@@ -3335,6 +3340,7 @@ module.exports = function (loading_) {
             var aya = QuranData.HizbQaurter[jh][1];
             var page = suraSafha(sura, aya);
             var item = { aya: aya, sura: sura, page: page }
+			getTafsir({ auther: "e3rab", aya: wino_.aya, sura: wino_.sura }, callback_)
             if (obj == "bu_browse") playThisAya(item); else getTafsir({ auther: "katheer", aya: aya, sura: sura }, callback_)//openTafssir(item);
 
             indicatorSearch.set("visible", true);
@@ -3467,7 +3473,7 @@ module.exports = function (loading_) {
         }
 
         var collectionView = new tabris.CollectionView({
-            layoutData: { left: 0, right: 0, top: 35, bottom: 0 },
+             left: 0, right: 0, top: 35, bottom: 0,
             itemHeight: 150,
             items: itmfavs_,//.reverse(),
             initializeCell: function (cell) {
@@ -3509,7 +3515,7 @@ module.exports = function (loading_) {
                 var container = new tabris.Composite({
                     highlightOnTouch: true,
                     background: "white",
-                    layoutData: { left: 0, top: 0, bottom: 0, right: 0 },
+                   left: 0, top: 0, bottom: 0, right: 0 
                 }).on("pan:horizontal", function (widget, event) {
                     handlePan(event, container);
                 }).on('tap', function (widget) {
@@ -3553,7 +3559,8 @@ module.exports = function (loading_) {
                     layoutData: { top: [titleView, 5], right: 16 }
                 }).appendTo(container);
                 var textView = new tabris.TextView({
-                    layoutData: { right: 16, top: [persoView, 5] }, alingment: "center"
+                     right: 16, top: [persoView, 5],left: 16, 
+            font: "bold 18px", alignment: "center",
                 }).appendTo(container);
                 //
                 var timeView = new tabris.TextView({
