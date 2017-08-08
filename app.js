@@ -701,7 +701,8 @@ module.exports = function (loading_) {
             //bottom: 0,
             //right: 0,
             //  centerX: 0, centerY: 0,
-            image: "./images/" + wino.currMosshaf + "/" + i + ".png",
+           // image: "./images/" + wino.currMosshaf + "/" + i + ".png",
+		   image: "http://quran.ksu.edu.sa/png_big/" + i + ".png",
             //http://quran.ksu.edu.sa/png_big/
             scaleMode: "fill",
         }).appendTo(scrollView);
@@ -716,7 +717,7 @@ module.exports = function (loading_) {
             image:(i==1 || i==2)?"":shdowPage,
             //http://quran.ksu.edu.sa/png_big/
              scaleMode: "fill",
-        }).appendTo(scrollView);
+        })//.appendTo(scrollView);
 		
 
         cbAmakenPage(tab, scrollView)
