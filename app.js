@@ -1,5 +1,5 @@
 module.exports = function (loading_) {
-    var db = null
+    var db = null;
     var langD = tabris.device.get("language");
 
     var version_ = 2.0;
@@ -51,7 +51,7 @@ module.exports = function (loading_) {
         alarm: getStorJ("alarm"),
         update: getStorJ("update"),
     }
-    wino.stor.tarajem = wino.tmpStr.tarajem ? wino.tmpStr.tarajem : "ar_muyassar";
+    wino.stor.tarajem = wino.tmpStr.tarajem ? wino.tmpStr.tarajem : "ar_ma3any";
     wino.stor.moqri = wino.tmpStr.moqri ? wino.tmpStr.moqri : "Hudhaify_64kbps";
     wino.stor.moqriId = wino.tmpStr.moqriId ? wino.tmpStr.moqriId : 1;
     wino.stor.tafssir = wino.tmpStr.tafssir ? wino.tmpStr.tafssir : "tabary";
@@ -200,7 +200,7 @@ module.exports = function (loading_) {
         family: "serif", //"serif", "sans-serif", "condensed" and "monospace"
         colorText: ["#000", "#ccc"],
         bg: ["#fff", "#000"],
-        bgclr: "#34d058",
+        bgclr: "#3a813a",
         //colorTitle: rgba(0, 141, 195, 1),
         //compositeTitle: [rgba(255, 255, 255, 0.85), rgba(6, 6, 6, 0.85)],
         activeNormal: !localStorage.getItem("activeNormal") ? true : false
@@ -311,7 +311,7 @@ module.exports = function (loading_) {
     var labelsDraw = [
         {
             text: _lang["bu_browse"],
-            img: "searchpage.png",
+            img: "search-3-32.png",
             ontap: function (target) {
                 openPageSaerchAll("bu_browse");
                 trayThis(1000);
@@ -1088,7 +1088,7 @@ module.exports = function (loading_) {
     //function onlongpress ayat//function onlongpress ayat
     function onTafssir(widget) {
         //clear setTimeou tap ayat
-        vibrate_(50);
+        vibrate_(10);
         var wino_ = widget.get("wino_");
         //     currAya = wino_.sura + "_" + wino_.aya; //this.currAya || def_aya;
         //   //logz("currAya", currAya)
@@ -2967,10 +2967,10 @@ module.exports = function (loading_) {
                                 function (res) {
                                     //lastLog(res.input1)
                                     wino.stor.itemsFavs.push({
-                                        title: wino.tmp.txtTash,
+                                        title: wino.tmp.txtTash.length>200? wino.tmp.txtTash.substring(0,200)+"...":wino.tmp.txtTash,
                                         page: wino.page,
                                         aya: wino.aya,
-                                        sura: wino.sura,
+                                        sura: wino.sura,//wino rm
                                         time: Math.floor(Date.now() / 1000),
                                         perso: index,
                                         text: res.input1
@@ -3106,7 +3106,7 @@ module.exports = function (loading_) {
     //
     function vibrate_(num) {
         if (!wino.stor.vibrate)
-            if (navigator.vibrate) navigator.vibrate(num)
+            if (navigator.vibrate) navigator.vibrate(10)
     }
     function sahreThis(text) {
         var msg = _lang["shareApp_msg"];
@@ -3549,7 +3549,7 @@ module.exports = function (loading_) {
                 //
                 var titleView = new tabris.TextView({
                     font: "bold 16px",
-                    layoutData: { top: [pageView, 5], right: 16 }
+                    top: [pageView, 5], right: 15, left:15,alignment:"center"
                 }).appendTo(container);
                 //
                 var persoView = new tabris.TextView({
@@ -3727,7 +3727,7 @@ module.exports = function (loading_) {
                 //
                 //
                 var titleViewTime_ = new tabris.Button({
-                    layoutData: { left: [imageViewAlarm, 10], centerY: 0 }, font: "bold 24px"
+                    layoutData: { top:10,left: [imageViewAlarm, 10], centerX: 0 }, font: "bold 24px"
                 }).appendTo(container);
                 var textViewActive = new tabris.TextView({
                     layoutData: { right: 10, centerY: 0 }, color: "#369"
@@ -4171,18 +4171,20 @@ module.exports = function (loading_) {
     }
     ///remove
  setTimeout(function () { 
-	 db = window.sqlitePlugin.openDatabase({ name: "e3rab.aytn", location: "default", createFromLocation: 1 });
+	// db = window.sqlitePlugin.openDatabase({ name: "e3rab.aytn", location: "default", createFromLocation: 1 });
  },5000)
     function getTafsir(data, cb) {
         //  openTafssir();
         // return
-		 
-        db = window.sqlitePlugin.openDatabase({ name: wino.stor.tafssir + ".aytn", location: "default", createFromLocation: 1 });
+       
+        var tafs = wino.stor.tafssir?wino.stor.tafssir:"tabary"
+		 tafs +=".aytn";
+        db = window.sqlitePlugin.openDatabase({ name: tafs, location: "default", createFromLocation: 1 });
         var query;
         if (data.id)
-            query = "SELECT * FROM " + wino.stor.tafssir + " WHERE id=" + wino.idTafs;
+            query = "SELECT * FROM " + tafs + " WHERE id=" + wino.idTafs;
         else
-            query = "SELECT * FROM " + wino.stor.tafssir + " WHERE sura=" + data.sura + " and aya=" + data.aya
+            query = "SELECT * FROM " + tafs + " WHERE sura=" + data.sura?data.sura:1 + " and aya=" + data.aya?data.aya:1
         db.transaction(function (tx) {
             tx.executeSql(query, [], function (tx, rs) {
                 cb(rs)
